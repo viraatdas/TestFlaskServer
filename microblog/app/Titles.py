@@ -10,21 +10,23 @@ def parseNouns(title):
     return nouns
 
 def method ():
+    chars = ['.', ',', '/', '-', '!', '?', '\'']
+
     website_url = url
     soup = BeautifulSoup(urllib2.urlopen(website_url))
     title = soup.title.string
     title = title[:title.find('|')]
-    print (title)
+    print ("Article title: "+title)
 
     query =  parseNouns(title)
+
     for i, w in enumerate(query):
-        query[i] =  w.replace('u',"")
+        for j,l in enumerate(chars):
+            w = w.replace(l,'')
+        query[i] =  w
 
-    query = "".join(query)
-    print (query)
-
-    print ("article title is " + title)
+    query = " ".join(query)
+    print ("Query: "+query)
 
     for url in search(query, stop=20):
         print(url)
-

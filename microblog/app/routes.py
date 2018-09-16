@@ -7,6 +7,6 @@ import app.Title as Title
 @app.route('/index')
 def index():
     url = request.args.get("url","")
-    Title.function(url)
+    output = Title.function(url)
     return (url)
 
